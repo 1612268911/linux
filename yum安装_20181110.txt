@@ -1,5 +1,6 @@
 配置yum源
 挂载系统镜像
+echo "/dev/sr0 /mnt iso9660 defaults 0 0" >> /etc/fstab
 mount /dev/cdrom  /mnt
 
 自定义yum源
