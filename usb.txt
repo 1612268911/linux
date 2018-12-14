@@ -1,19 +1,36 @@
-����usb   https://blog.csdn.net/zm1_1zm/article/details/72636789
-�鿴u������
-fdisk  -l     #-->һ�㣺sdb1
+连接usb   https://blog.csdn.net/zm1_1zm/article/details/72636789
+查看u盘名称
+fdisk  -l     #-->一般：sdb1
+df [选项] [文件名] 
+参数： 
+-a：--all，显示所有的文件系统，包括虚拟文件系统，参考示例2。 
+-B：--block-size，指定单位大小。比如1k，1m等，参考示例3。 
+-h：--human-readable，以人们易读的GB、MB、KB等格式显示，参考示例4。 
+-H：--si，和-h参数一样，但是不是以1024，而是1000，即1k=1000，而不是1k=1024。 
+-i：--inodes，不用硬盘容量，而是以inode的数量来显示，参考示例5。 
+-k：以KB的容量显示各文件系统，相当于--block-size=1k。 
+-m：以KB的容量显示各文件系统，相当于--block-size=1m。 
+-l：--local，只显示本地文件系统。 
+--no-sync：在统计使用信息之前不调用sync命令(默认)。 
+-sync：在统计使用信息之前调用sync命令。 
+-P：--portability，使用POSIX格式显示，参考示例6。 
+-t：--type=TYPE，只显示指定类型的文件系统，参考示例7。 
+-T：--print-type，显示文件系统类型，参考示例8。 
+-x：--exclude-type=TYPE，不显示指定类型的文件系统。 
+--version：显示版本信息。
 
-����Ŀ¼
+创建目录
 mkdir /mnt/usb/
 
-���ص�Ŀ¼
+挂载到目录
 mount /dev/sdb1 /mnt/usb
 
-ȡ�����أ��Ƴ�usbʱ��
+取消挂载（移除usb时）
 umount /dev/sdb1 /mnt/usb
 
-�������   https://blog.csdn.net/yaoqiwaimai/article/details/77162882
-mount: δ֪���ļ�ϵͳ���͡�ntfs��
-��װ
+报错解决   https://blog.csdn.net/yaoqiwaimai/article/details/77162882
+mount: 未知的文件系统类型“ntfs”
+安装
 1.wget https://tuxera.com/opensource/ntfs-3g_ntfsprogs-2017.3.23.tgz
 
 
@@ -34,5 +51,5 @@ make
 
 make install
 
-����
+挂载
 mount -t ntfs-3g /dev/sdb1 /mnt/usb
