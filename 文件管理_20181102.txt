@@ -1,0 +1,14 @@
+﻿cp -r /opt/test /opt/dump  #cp文件夹（是复制文件夹，不是里面的文件）
+cp -r /opt/test/* /opt/dump  #cp文件夹中的文件
+
+mv /opt/test /opt/dump  #mv文件夹（是移动文件夹，不是里面的文件）
+mv /opt/test/* /opt/dump  #mv文件夹中的文件
+
+rm -rf ./*  #删除当前目录下所有文件
+rm -rf /opt/test/*  #删除/opt/test/目录下所有文件
+rm -rf /opt/test/*.txt  #删除/opt/test/目录下所有 .txt文件
+
+cat a.txt | grep password  #搜索a.txt文件内容 带password关键字的行
+
+ls /opt/test  #查看此目录
+

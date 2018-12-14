@@ -1,0 +1,26 @@
+一、windows文件到Linux下乱码
+iconv -f gb2312 -t utf8 jj.txt -o test.txt   #转成新文件
+iconv -f gb2312 -t utf8 jj.txt   #直接转
+
+-f #原始文本编码  fb2312
+-t #输出编码
+-o #输出文件名
+
+echo $?  #检查是否转换成功 ，0表示成功
+
+iconv -l   #列出所有编码
+
+
+二、linux文件到windows下不换行
+yum install -y dos2unix  #安装dos2unix包
+unix2dos   #linux文件转Windows自动换行
+dos2unix   #Windows文件转linux自动换行
+
+三、文件上传下载
+安装rs、sz命令
+yum -y install lrzsz
+rz  #文件上传
+sz jj.txt  #文件下载，jj.txt为当前目录下的摁键
+
+
+

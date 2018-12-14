@@ -1,0 +1,92 @@
+安装rpm软件
+rpm  [参数] 软件包
+-i  #install  安装软件包
+-v  #显示附加信息，提供更多详细信息
+-V  #校验，对已经安装的软件进行校验
+-h  #--hash 安装时输出####标记 
+
+rpm -ivh /media/Package/zsh-xxx.rpm   #安装zsh
+rpm -ivh http://xx.xx.xx.rpm     #外网安装
+
+epel源:是对centos7系统自带的base源的拓展。
+yum安装有依赖关系的包
+
+#
+rpm包使用全名：在安装和更新升级时候使用
+...包名：对已经安装过的软件包进行操作时，比如查找已经安装的包，卸载包等；默认去/var/lib/rpm下面搜索。当一个rpm包安装后安装信息默认在/var/lib/rpm目录下
+
+rpm搜索功能
+rpm -q 常与下面参数组合使用
+-a    #查询所有已安装的软件包
+-f     #查询命令属于那个包
+-i     #显示已经安装rpm软件包信息，直接跟包名
+-l     #查询软件包中文件安装的位置
+-p   # 查询未安装软件包的相关信息，直接跟包名
+-R   #查询软件包的依赖性
+rpm -q  mysql  #查询指定包是否安装
+rpm -qa   #查询所有已安装包
+rpm -qa | grep vim  #查询所有已安装包中带vim关键字的包
+which find   #查看find命令的绝对路径
+rpm -qf  /usr/bin/find  #查询文件或命令属于那个安装包
+#没有安装的包 加p
+rpm -qpi /media/Packages/zsh-5.0.2-28.el7.x86_64.rpm   #查询包的详细信息或作用
+rpm -qpl /media/Packages/zsh-5.0.2-28.el7.x86_64.rpm   #查询包安装后生成哪些文件
+#已经安装的包
+rpm -qi zsh #查询zsh包的详细信息和作用
+
+查看包有没有被修改
+rpm -V  包名
+rpm -Vf   文件路径
+
+rpm -V findutils
+rpm -Vf /usr/bin/find
+
+检查系统所有包有没有被修改
+rpm -Va
+注：如果出现的全是点，表示测试通过
+出现下面的字符代表测试的失败
+5  #MD5校验和是否改变，也可看成文件内容是否修改
+S  #文件长度，大小是否改变
+L  #符号链接，文件路径是否改变
+T  #文件修改日期是否改变
+D  #设备
+U  #用户，文件的属组
+G  #用户组
+M  #模式（包括许可和文件类型）
+？  #不可读文件
+再后面的c 文件名，表示的是文件类型
+c  #配置文件
+d  #普通文件
+g  #不该出现的文件，意思就是这个文件不该被这个包所包含
+l   #授权文件（license file）
+r   #描述文件
+
+rpm -Va > rpm_check.txt  #查询所有被修改的包信息输出到check_rpm.txt文件
+
+rpm包的卸载和升级
+rpm -e 包名
+参数：
+nodeps   #忽略依赖,建议卸载时不要用rpm卸载有依赖的包，应该用yum
+rpm -e zsh
+rpm -e --nodeps zsh
+
+升级包(已经安装过的包)
+rpm -Uvh  /media/Packages/zsh-5.0.2-28.el7.x86_64.rpm   #因为升级时会有一些依赖关系要解决，所以一般我们使用yum update 包  来升级
+
+
+#rpm需要手动解决依赖关系
+rpm -ivh mariadb-server-5.5.56-2.el7.x86_64.rpm
+错误：依赖检测失败：
+	mariadb(x86-64) = 1:5.5.56-2.el7 被 mariadb-server-1:5.5.56-2.el7.x86_64 需要
+	mariadb-libs(x86-64) = 1:5.5.56-2.el7 被 mariadb-server-1:5.5.56-2.el7.x86_64 需要
+	perl-DBD-MySQL 被 mariadb-server-1:5.5.56-2.el7.x86_64 需要
+	mariadb-server 被 (已安裝) mysql-community-server-5.6.42-2.el7.x86_64 取代
+如安装mariadb-server-5.5.56-2.el7.x86_64.rpm，需要先安装
+1.mariadb(x86-64) = 1:5.5.56-2.el7
+2.mariadb-libs(x86-64) = 1:5.5.56-2.el7
+3.perl-DBD-MySQL
+
+
+
+
+

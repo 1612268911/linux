@@ -1,0 +1,14 @@
+ # http://blog.51cto.com/11060853/2089872
+
+开机
+上下方向键,选择第一个按“e”
+修改ro-->rw init=/sysroot/bin/sh
+# chroot /sysroot             //进入系统环境里面
+
+# passwd root                 //修改密码，小方块说明乱码
+
+# LANG=en                     //修改语系变量
+
+# passwd root                 //再次执行修改root密码即可。
+
+# touch /.autorelabel     //selinux相关，不创建无法开机

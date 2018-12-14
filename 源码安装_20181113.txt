@@ -1,0 +1,47 @@
+部署Nginx
+安装依赖包：
+yum install -y gcc gcc-c++ make zlib-devel pcre pcre-devel openssl-devel
+zlib压缩库，pcre支持正则表达式，地址重写rewrite，openssl提供https支持
+开始安装：
+
+tar -zxvf nginx-xxx.tar.gz
+
+cd nginx-xxx
+
+./configure
+./configure --prefix=/usr/local/nginx  #指定安装路径
+最终生成：Makefile
+
+make
+make -j 4  #以四核编译
+按Makefile文件编译
+
+按Makefile定义的文件路径安装
+make install
+
+make clean 
+#清除上次的make命令所产生的object和Makefile文件，当需要重新执行configure时，需要make clean
+
+删除源码包
+make uninstall
+#有时删不干净，建议安装时指定安装目录（./configure --prefix），这样当删除或备份时直接操作安装目录即可
+
+源码编译可能出现的问题：
+./configure
+error:Can't find xx library
+
+1.找到对应的包安装
+rpm -ivh xx.rpm
+搜索包
+1）
+cd /media/Packages/  
+ls *xx*    #匹配文件
+ls *x*    #匹配文件
+
+2) yum search xx
+
+2.如果已经安装还是报错，安装库开发文件（xx-devel.rpm）
+rpm -ivh xx-devel.rpm
+
+
+

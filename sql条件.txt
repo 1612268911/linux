@@ -1,0 +1,38 @@
+﻿单个表条件查询，如userId
+select
+a.DISCIPLINE_INSPECTION_ID, a.INFO_TYPE, a.TITLE, a.CREATOR, a.CREATE_TIME, a.LAST_UPDATE_PERSON,
+a.LAST_UPDATE_TIME,substring(a.CONTENT,1,250) as CONTENT,IFNULL(b.IS_READ,'1002'),b.ID AS readId
+FROM saas_discipline_inspection.TMT_DISCIPLINE_INSPECTION_INFO a
+LEFT JOIN
+(
+SELECT r.DISCIPLINE_INSPECTION_ID,r.IS_READ,r.ID
+FROM saas_discipline_inspection.TMT_DISCIPLINE_READ r
+WHERE r.USER_ID = '5e22e2e9-5ae2-11e7-b2da-0242ac110002'
+AND r.IS_READ = '1001'
+) b
+ON a.DISCIPLINE_INSPECTION_ID = b.DISCIPLINE_INSPECTION_ID
+LEFT JOIN paas_portal.TPT_USER c on a.CREATOR = c.USER_ID
+
+
+4a82e583-e750-4af5-8659-aa3c890a75d6	0001	大家注意纪律	5f28f82e-5ae2-11e7-b2da-0242ac110002	2018-05-02 10:30:55	5f28f82e-5ae2-11e7-b2da-0242ac110002	2018-05-02 10:30:55	<p>注意纪律<br></p>	1001	212321
+6b8b6818-8a71-4feb-85ec-ec05b748e44a	0004	关于5起“纠‘四风'、治陋习”专项整治典型案例的通报（望纪通〔2017〕9号）	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-05 16:59:25	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-07 09:50:48	<p><img src="/paas-file/file/getFile?fileId=20170906_98904ccd-75a1-48d6-92f6-895ef7752a81" style="width: 867px;"><img src="/paas-file/file/getFile?fileId=20170906_56205a68-6d43-4906-a95d-5f83f2304c1e" style="width: 867px;"><img src="/paas-file/file/g	1001	dfasffaf
+6482e195-e043-4bf0-9190-aad31f1f972c	0002	设个机构	52f1ec2f-23e2-42e2-84b3-226cf4a9173f	2018-06-27 17:34:25	52f1ec2f-23e2-42e2-84b3-226cf4a9173f	2018-06-27 17:34:25	<p>机构</p>	1001	e23424
+351ed90e-a38c-441d-82de-1ee5e42f880c	0003	测试文件上传	jkq-admin-1	2018-06-19 17:02:30	jkq-admin-1	2018-06-19 17:02:30	<p>测试文件上传<br></p>	1002	
+698275b6-ea4b-4adb-952a-9688f386c93e	0003	试试呗	jkq-admin-1	2018-07-02 09:19:09	jkq-admin-1	2018-07-02 09:19:09	<p>呼啦啦呼啦啦呼啦啦</p>	1002	
+a124adf1-8b4e-4fe0-903d-b47f3169a24c	0001	大家注意注意纪律	5f386e51-5ae2-11e7-b2da-0242ac110002	2018-06-26 14:39:43	5f386e51-5ae2-11e7-b2da-0242ac110002	2018-06-26 14:39:43	<p>问问</p>	1002	
+d26961b6-64cd-4ea0-a608-2695e936a9d4	0006	关于转发市纪委《关于加强中秋国庆“两节”期间作风建设  喜迎党的十九大胜利召开的通知》的通知	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-30 11:55:22	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-30 11:55:22	<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;关于转发市纪委《关于加强中秋国庆“两节”期间作风建设 &nbsp;喜迎党的十九大胜利召开的通知》的通知</p><p><br></p><p>各局室司，驻园机构：</p><p>&nbsp; &nbsp; &nbsp; &nbsp; 现转发市纪委《关于加强中秋国庆“两节”期间作	1002	
+f749bc6f-0589-4784-aeef-89d183fe0aac	0005	转发市、区纪委《关于开展党纪条规知识网上竞答活动的通知》	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-19 15:30:23	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-19 15:30:23	<p>各局室：</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;现转发市、区纪委《关于开展党纪条规知识网上竞答活动的通知》等相关文件，请各局室认真宣传、组织。原则上各单位全体党员必须参与答题。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp	1002	
+
+
+
+
+多个表条件查询，如userId
+select a.*,b.IS_READ
+from TMT_DISCIPLINE_INSPECTION_INFO a
+left join TMT_DISCIPLINE_READ b
+on a.DISCIPLINE_INSPECTION_ID = b.DISCIPLINE_INSPECTION_ID
+where b.USER_ID = '5e22e2e9-5ae2-11e7-b2da-0242ac110002'
+
+4a82e583-e750-4af5-8659-aa3c890a75d6	0001	大家注意纪律	<p>注意纪律<br></p>	5f28f82e-5ae2-11e7-b2da-0242ac110002	2018-05-02 10:30:55	5f28f82e-5ae2-11e7-b2da-0242ac110002	2018-05-02 10:30:55	1001
+6b8b6818-8a71-4feb-85ec-ec05b748e44a	0004	关于5起“纠‘四风'、治陋习”专项整治典型案例的通报（望纪通〔2017〕9号）	<p><img src="/paas-file/file/getFile?fileId=20170906_98904ccd-75a1-48d6-92f6-895ef7752a81" style="width: 867px;"><img src="/paas-file/file/getFile?fileId=20170906_56205a68-6d43-4906-a95d-5f83f2304c1e" style="width: 867px;"><img src="/paas-file/file/getFile?fileId=20170906_01ede229-f053-4d67-8855-08fc3bda4229" style="width: 867px;"><br></p>	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-05 16:59:25	5f386e51-5ae2-11e7-b2da-0242ac110002	2017-09-07 09:50:48	1001
+6482e195-e043-4bf0-9190-aad31f1f972c	0002	设个机构	<p>机构</p>	52f1ec2f-23e2-42e2-84b3-226cf4a9173f	2018-06-27 17:34:25	52f1ec2f-23e2-42e2-84b3-226cf4a9173f	2018-06-27 17:34:25	1001

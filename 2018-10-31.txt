@@ -1,0 +1,105 @@
+一、网络
+临时修改ip（可以配多个ip）   重启失效
+ifconfig ehs0 192.168.254.128 (netmask 255.255.255.0)
+
+重启网络服务
+systemctl restart network  -- centos 7
+service network restart      --centos 6
+
+删除临时ip
+ifconfig ehs0:0 del 192.168.254.128
+
+网卡配置文件
+/etc/sysconfig/network-scripts/
+ifcfg- ens33
+ifcfg- lo
+
+DNS配置文件
+/etc/resolv.conf
+
+设置主机和IP绑定信息
+/etc/hosts
+
+设置主机名
+/etc/hostname
+
+永久修改ip（重启生效）
+1.nmtui    #界面
+2.vim /etc/sysconfig/network- scripts/ifcfg- ens33  #修改配置文件
+BOOTPROTO=none #等号后面dhcp：动态ip，satic静态ip，none表示不指定，默认静态
+NAME #网卡名称
+ONBOOT #启动网卡
+DNS1 #dns服务
+NETMASK #子网掩码
+IPADDR #ip地址
+PREFIX=24 #24位
+GATEWAY  #网关
+
+出现错误：    解决http://www.cnblogs.com/shiqi17/p/9564022.html
+systemctl start network
+network.service control process exited
+
+
+二、防火墙
+防火墙状态
+systemctl status firewalld
+
+关闭
+systemctl stop firewalld
+
+开启
+systemctl start firewalld
+
+禁用(开机不启动)
+systemctl disable firewalld
+启用
+systemctl enable firewalld
+
+Selinux
+查看是否启用
+getenforce
+
+临时关闭
+setenforce 0
+
+永久关闭（重启生效）
+vi /etc/selinux/config
+改为：SELINUX=disable 
+
+重启系统
+reboot
+
+三、终端
+查看当前终端
+tty
+
+终端之间通信
+echo jjjjjjj > /dev/pts/1
+
+广播信息
+wall "jjjjjjjjjjjj"
+shutdown +10    #10分钟后关机
+shutdown -c       #取消关机
+
+shell中#$的区别
+#表示root登录
+$表示普通用户
+
+切换用户
+su root
+
+[root@localhost/]#
+用户名@主机名 当前目录（~表示当前用户的家目录）
+
+查看所有支持shell
+cat /etc/shells
+
+查看用户对应shell命令
+cat /etc/passwd
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+一、别名
+命令添加别名
+alias  vimens33="vim /et/sysconfig/network-scripts/ifcfg-ens33"
+
+删除别名
+unalias vimens33
+
+永久添加别名-->当前用户
+vim /root/.bashrc
+添加：
+alias  vimens33="vim /et/sysconfig/network-scripts/ifcfg-ens33"
+刷新：
+source /root/.bashrc
+
+永久添加别名-->全局
+vim /etc/.bashrc
+添加：
+alias  vimens33="vim /et/sysconfig/network-scripts/ifcfg-ens33"
+
+二、cd
+cd    #返回home目录
+cd ..    #返回上级目录
+cd -   #返回切换前目录
+
+三、历史命令
+查看所有历史命令
+history
+
+查找历史命令
+1.光标上下键
+2.ctrl+r-->输入某条命令的关键字-->找出命令-->按右光标键
+
+四、快捷键
+^C     #终止前台运行的程序
+^D     #等价exit
+^L      #清屏与clear功能一样
+^R     #搜索历史命令
+
+!$       #获取上一个命令最后一个参数
+~]#cat /etc/profile
+~]#vim !$  等价于 vim /etc/profile 
+
+tab     #补全命令
+
+五、时间
+查看当前日期
+date
+
+设置日期
+date -s "2018-10-1"
+
+日期格式
+date "+%Y%m%d"
+%F -->%y%m%d
+%Y    #年
+%m   #月
+%d    #日
+%H   #时
+%M   #分
+%S    #秒
+
+日期计算
+date -d "+1months"
+
+测试命令执行时间
+time ll /etc/
+
+六、开关机
+init 0     #关机
+shutdown -r    #重启
+shutdown -h   #关机
+shutdown -h "+10"  #10分钟后关机
+shutdown -h 10:40  #10:40关机
+shutdown -c  #取消关机
+
+启动级别
+init 0~6
+3 命令行模式
+5 图形界面模式
+
+
+
+

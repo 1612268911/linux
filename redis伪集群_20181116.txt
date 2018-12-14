@@ -1,0 +1,38 @@
+1.先安装单机版redis
+2.创建redis节点
+3.修改配置文件redis.conf
+4.启动所有redis节点  #./redis-server redis.conf
+5.创建集群   #先开放端口，或关闭防火墙
+[root-xxx~]#./redis-trib.rb create--replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003127.0.0.1:7004 127.0.0.1:7005
+--https://www.cnblogs.com/lihaoyang/p/6906444.html
+
+
+error:
+在创建redis集群时出现下列错误
+[iyunv@redis src]# ./redis-trib.rb create--replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003127.0.0.1:7004 127.0.0.1:7005
+./redis-trib.rb:24:in `require': no such fileto load -- rubygems (LoadError)
+from./redis-trib.rb:24
+解决方法：
+--https://www.iyunv.com/thread-18781-1-1.html
+
+解决方法：
+安装ruby环境
+yum install ruby
+yum install rubygems
+将redis集群管理工具redis-trib.rb上传至服务器
+安装ruby的包
+gem install redis
+
+error:
+Error installing redis redis requires Ruby version >= 2.2.2. 
+解决办法：
+替换成高版本ruby包
+--https://blog.csdn.net/hello_world_qwp/article/details/78261618
+
+error:
+[ERR] Node 192.168.161.131:7000 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.
+解决办法：
+--https://www.jianshu.com/p/338bc2a74300
+
+
+

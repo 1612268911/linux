@@ -1,0 +1,24 @@
+/****************¡¾condition && £¨condition  ||  condition£©¡¿****************/
+
+SELECT a.ARTICLE_ID,a.TITLE
+FROM saas_information.CMS_ARTICLE a
+WHERE a.ARTICLE_ID NOT IN
+(
+SELECT r.ARTICLE_ID
+FROM saas_information.CMS_ARTICLE_READ r
+WHERE r.USER_ID = '617a3ba6-5ae2-11e7-b2da-0242ac110002'
+AND r.IS_READ = '1001'
+)
+AND (a.COLUMN_ID ='b51a214c-7813-4194-9e10-8d9f68594d60' or a.COLUMN_ID ='299e8db2-744d-4680-addb-0512ee84e36b')
+
+/*****************in*****************/
+SELECT COUNT(1)
+FROM saas_information.CMS_ARTICLE a
+WHERE a.ARTICLE_ID NOT IN
+(
+SELECT r.ARTICLE_ID
+FROM saas_information.CMS_ARTICLE_READ r
+WHERE r.USER_ID = #{userId}
+AND r.IS_READ = '1001'
+)
+AND a.COLUMN_ID IN ('b51a214c-7813-4194-9e10-8d9f68594d60','299e8db2-744d-4680-addb-0512ee84e36b')

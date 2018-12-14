@@ -1,0 +1,26 @@
+查看文件类型     #linux下不根据文件后缀表示文件类型
+file  /etc/password  
+
+按一定顺序查看文件
+ls [options..]
+t   #表示按时间排序
+S  #表示按大小排序
+r   #表示从小到大，不加r表示从大到小
+h  #输出文件大小
+如：
+ls -ltr   #按时间从小到大排序
+
+
+du -sh /etc  #查看目录大小
+du -h  /etc   #查看目录下所有文件大小
+
+df -h   #查看分区大小
+
+处理大量数据时sort
+cat /etc/passwd | sort   #文件内容按字母或数字从小到大顺序排序
+sort -n /etc/passwd  #同上
+cat /etc/passwd | sort -r  #文件内容按字母或数字从大到小顺序排序
+sort -r /etc/passwd
+
+
+

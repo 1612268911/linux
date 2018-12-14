@@ -1,0 +1,38 @@
+连接usb   https://blog.csdn.net/zm1_1zm/article/details/72636789
+查看u盘名称
+fdisk  -l     #-->一般：sdb1
+
+创建目录
+mkdir /mnt/usb/
+
+挂载到目录
+mount /dev/sdb1 /mnt/usb
+
+取消挂载（移除usb时）
+umount /dev/sdb1 /mnt/usb
+
+报错解决   https://blog.csdn.net/yaoqiwaimai/article/details/77162882
+mount: 未知的文件系统类型“ntfs”
+安装
+1.wget https://tuxera.com/opensource/ntfs-3g_ntfsprogs-2017.3.23.tgz
+
+
+
+
+
+tar  zxvf ntfs-3g_ntfsprogs-2017.3.23.tgz
+
+
+cd  ntfs-3g_ntfsprogs-2017.3.23/
+
+
+./configure
+
+
+make
+
+
+make install
+
+挂载
+mount -t ntfs-3g /dev/sdb1 /mnt/usb

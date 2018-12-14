@@ -1,0 +1,18 @@
+yum install -y ipvsadm
+
+ipvsadm -A -t 192.168.1.63:80 -s rr
+-A  #添加
+-t   #表示TCP的服务 vip:port
+-s   #调度算法  rr表示round-robin轮询
+ipvsadm -a -t 192.168.1.63:80 -r 192.168.2.64 -m
+ipvsadm -a -t 192.168.1.63:80 -r 192.168.2.62 -m
+-a 表示添加realserver（真实机器）的地址
+-r  #指定real server的ip地址
+-m  #表示masquerade，也就是NAT方式的LVS
+
+ipvsadm -L -n   #查看规则
+
+ipvsadm -C   #清除规则
+ipvsadm --save   #保存
+
+service ipvsadm restart  #重启

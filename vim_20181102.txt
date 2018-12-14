@@ -1,0 +1,55 @@
+ctrl+v
+复制
+y  #单个字符复制
+nyy  #表示复制n行
+
+删除
+d
+ndd   #表示删除n行
+
+粘贴
+P
+
+剪切
+ndd  ndd   #剪切n行到粘贴板，也表示删除n行
+
+u #撤消
+
+ctrl+r  #恢复撤销
+
+多行注释
+ctrl+v-->选中要注释的行-->大写“I”-->esc
+
+取消多行注释
+ctrl+v-->选中要注释的行-->小写  "d"
+
+搜索
+:/nologin  #nologin为搜索内容
+n   #向下
+N   #向上
+:noh  #取消搜索(高亮)
+
+vim编辑模式下
+:!ifconfig     #执行外部命令
+:r /etc/hosts   #读取外部文件追加到本内容中
+
+文本替换
+:1,3 s/bin/jj   替换1-3行出现的第一个bin为jj
+:1,3 s/bin/jj/g   替换1-3行出现的所有bin为jj
+:3 s/bin/jj/g   替换第3行出现的所有bin为jj
+:% s/bin/jj/g   替换全文出现的所有bin为jj
+:% s/bin/jj/gi   替换全文出现的所有bin为jj，i表示忽略大小写
+
+行号
+:set nu
+:set nonu
+
+编辑两个文件
+vim -O /etc/passwd /etc/hosts   #左右方式 o为上下方式
+ctrl+w（两次）   #切换文档
+:qa!    #退出
+
+对比两个文件
+vimdiff -O /etc/passwd /etc/hosts   #左右方式 o为上下方式
+ctrl+w（两次）   #切换文档
+:qa!    #退出

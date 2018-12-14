@@ -1,0 +1,65 @@
+-rw-r--r-- 1 root root 1189 Oct 23 09:55 /etc/passwd
+
+-   rw-   r--    r-- 1 root root 1189 Oct 23 09:55 /etc/passwd
+1    2      3       4      5      6                    7                       8
+1.文件类型（-）
+p  表示命名管道文件
+d  表示目录文件
+l   表示符号连接文件
+-  表示普通文件
+s  表示socket套接口文件，如启动mysql时，会产生mysql.sock文件
+c  表示字符设备文件   如：虚拟控制台或tty0
+b  表示块设备文件    如：sda
+
+2.用户权限、3所属组权限、4其他用户权限
+2.1文件
+r   读
+w  写
+x   执行
+目录
+r    读（看到目录里面有什么） ls
+w   在目录里建文件，删除，移动touch、mkdir、rm、mv、cp
+x    进入 cd  cat
+
+修改权限  
+chown  （所属权限）
+chown mk a.txt    #修改a.txt的拥有者为mk
+chown :root a.txt  #修改atxt的所属组为root
+chown mk:mk a.txt  #修改a.txt的拥有者和所属组都是mk
+
+chown -R mk:mk /home/mk  #修改/home/mk目录及目录下所有文件的拥有者和所属组都是mk
+（不加-R 只修改目录，不修改目录下文件的权限）
+
+chmod（操作权限）
+u   #拥有着
+g   #所属组
+o   #其他人
+a    #所有人
++   #增加权限
+-    #减少权限
+=   #赋予权限
+如：
+chmod u-w /home/mk/a.txt  #用户减少写的权限
+chmod a+x /home/mk/a.txt  #给所有用户执行权限
+
+八进制数字表示权限
+r   w   x
+000  ->---       0
+...
+111  ->rwx      7
+如：
+rwx r-x r-x   --->755
+chmod 755 a.txt
+
+添加文件系统拓展属性
+chattr -a  hack.sh
+chattr +a  hack.sh
+参数：
+a  #只能追加内容
+i   #系统不允许对这个文件进行任何的修改，如果是目录，那么只能修改目录下的文件，不允许新建/删除文件
+
+查看文件系统拓展属性
+lsattr  hack.sh
+
+查看当前登录用户
+whoami

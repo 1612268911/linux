@@ -1,0 +1,52 @@
+#重定向 >
+cat /proc/cpuinfo > cup.txt
+cat /proc/cpuinfo  #查询cpu信息
+
+#追加  >>
+uname -r >> cup.txt  
+uname -r  #查询操作系统信息 
+
+#清空文件
+> cpu.txt
+
+grep root /etc/passwd   #查询
+
+#输入重定向<
+mysql -uroot -p123456 < source.sql   #将source.sql导入mysql
+  
+cat > a.txt <<EOF  #输入a.txt文件内容，遇到EOF结束，EOF可自定义
+
+#错误重定向  2>
+cat a.txt 2> error.txt   #如果cat a.txt 命令执行错误，将错误信息输出到error.txt文件中，而不直接显示
+cat a.txt 2>> error.txt  #追加
+
+/dev/null  #空，输入都没了，看不到
+
+#使用dd命令产生一个文件
+参数：
+if  #代表输入文件，如不指定if，默认从stdin读取输入
+of #代表输入文件，如不指定of，默认从stdout输出
+bs  #代表字节为单位的块大小
+count  #代表被复制的块数
+如：
+dd if=/dev/zero of=b.txt bs=1M count=50  #产生一个50M的文件
+
+#等同于  >&
+ls /tmp xx 2>log.txt 1>&2   #将标准/错误输入都写入log.txt
+ls /tmp xx 1>log.txt 2>&1   #同上
+
+#管道 | 的使用
+语法：command -a | command -a |...
+注意：
+1.管道命令只能处理前一个命令的正确输出，不处理错误输出
+2.管道右边的命令必须能够接收标准输入的数据流命令才行
+3.管道符可以把多个命令连接起来同时使用
+如
+ps -ef | grep redis   #查询redis进程
+
+#tee从标准输入读取文件，将内容输出到标准输出设备，同时保存成文件
+参数：a  #表示追加
+
+df -h | tee disk.log   #输出磁盘大小，并将输出信息保存到disk.log文件中
+df -h | tee -a disk.log #输出并追加到文件
+df -h #查看磁盘大小

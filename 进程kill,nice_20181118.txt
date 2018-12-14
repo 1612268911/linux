@@ -1,0 +1,39 @@
+进程的前台和后台运行的几个命令：
+&   #用在一个命令的最后，可以把这个命令放到后台执行
+ctrl+z  #将一个正在执行的命令放到后台，并且暂停
+jobs    #查看当前有多少在后台运行的进程
+fg 1 #将后台的命令调至前台继续运行，1是后台正在运行的命令的序号
+bg   #将一个后台暂停的命令，变得继续执行
+
+强制终止进程
+kill -9 2342   #进程id=2342
+killall sshd    #服务名
+pkill sshd      #服务名
+
+进程的优先级
+优先级取值（-20，19），越小优先级越高，默认是0
+nice -n 5 vim a.txt  #指定此进程优先级为5
+renice -10 13782    #指定进程13782的优先级为-10
+
+screen保存当前进度（执行某项操作退出xshell也可以继续执行）
+yum install -y screen  #安装screen
+screen   #进入
+vim a.txt   #执行命令，备份
+此时想离开一段时间，但还想让这个命令继续运行
+操作：#在screen当前窗口输入快捷键ctrl+a+d
+消息：[detached from 44074.pts-3.xuegod63]    #指分离出来独立的一个会话
+回来之后，找到screen会话
+screen -ls   #查看已建立的会话id
+消息：
+There is a screen on
+       44074.pts-1.tivf06  (Detached)
+恢复进程执行：
+screen -r 44074   #返回进程执行进度
+exit   #不想使用screen会话了，退出
+
+
+
+
+
+
+

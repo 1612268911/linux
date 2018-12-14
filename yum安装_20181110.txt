@@ -1,0 +1,39 @@
+配置yum源
+挂载系统镜像
+mount /dev/cdrom  /mnt
+
+自定义yum源
+vim /etc/yum.repo.d/centos7.repo  #必须以.repo结尾
+插入内容：
+[centos]    #yum源名称，唯一的，用于区分不同的yum源
+name=CentOS7    #对yum源的描述信息
+baseurl=file:///mnt    #yum源的路径，提供方式包括FTP(ftp://..),HTTP(http://...),本地file(file://...光盘挂载目录所在的位置)
+enable=1   #是否启用yum源，1表示启用  0表示禁用
+gpgcheck=0   #使用公钥检验rpm包的正确性；1为检验  0为不检验
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7   #指定进行rpm检验的公钥文件地址
+
+yum clean all   #清空一下yum缓存
+yum list    #查看列表
+
+yum使用
+yum install -y 包名   #安装软件包 ，-y直接安装
+yum -y update 包名 #升级，修改软件设置和系统设置，系统版本，内核都升级
+yum -y update #系统升级
+yum -y upgrade 包名 #升级，不修改软件设置和系统设置，系统版本，内核都不变
+yum -y upgrade #系统升级
+yum info 包名     #查询rpm包作用
+yum provides /usr/bin/find   #查看命令是那个软件包安装的
+yum -y remove 包名  #卸载包，-y直接卸载
+yum search keyword  #按关键字搜索软件包
+
+
+yum安装开发工具软件包组
+yum grouplist  #查看有哪些软件包组
+yum groupinstall -y 组名  #安装软件包组，有空格加""
+echo $LANG   #查看当前语言
+LANG=en.US.UTF-8   #切换到英文
+LANG=zh.CH.UTF-8   #切到中文
+
+
+文件下载
+wget -O /opt/Centos-7.repo http://xxx.Centos.repo   #-O指定文件路径
