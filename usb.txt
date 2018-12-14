@@ -1,6 +1,8 @@
 连接usb   https://blog.csdn.net/zm1_1zm/article/details/72636789
 查看u盘名称
 fdisk  -l     #-->一般：sdb1
+
+查看文件系统
 df [选项] [文件名] 
 参数： 
 -a：--all，显示所有的文件系统，包括虚拟文件系统，参考示例2。 
