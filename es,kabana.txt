@@ -1,0 +1,65 @@
+#²éÑ¯ËùÓĞ
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+#select name,id from user where pwd = '111' order by id limit 0,3
+GET test/user/_search
+{
+  "query": {
+    "match": {
+      "pwd": "111"
+    }
+  },
+  "sort": [
+    {
+      "id": {
+        "order": "desc"
+      }
+    }
+  ],
+  "from": 0,
+  "size": 3
+  , "_source": ["name","id"]
+}
+
+#select id,name from user where name like 'java%' and id = 1 and id >1 adn and <4 order by id desc;
+GET test/user/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"wildcard": {
+          "name": "java*"
+        }}
+        ,{"match": {
+          "id": "1"
+        }}
+      ],
+      "must_not": [
+        {"match": {
+          "id": "1"
+        }}
+      ],
+      "filter": {
+        "range": {
+          "id": {
+            "gte": 1,
+            "lte": 4
+          }
+        }
+      }
+    }
+  }
+  , "sort": [
+    {
+      "id": {
+        "order": "desc"
+      }
+    }
+  ],
+ "_source": ["name","id"]
+}

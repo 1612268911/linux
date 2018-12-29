@@ -13,6 +13,10 @@ enable=1   #是否启用yum源，1表示启用  0表示禁用
 gpgcheck=0   #使用公钥检验rpm包的正确性；1为检验  0为不检验
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7   #指定进行rpm检验的公钥文件地址
 
+#查看命令所在包，如ifconfig
+yum provides ifconfig
+yum whatprovides ifconfig
+
 yum clean all   #清空一下yum缓存
 yum list    #查看列表
 

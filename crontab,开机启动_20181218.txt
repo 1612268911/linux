@@ -6,7 +6,7 @@
 一、计划任务
 crontab -e #写入
 1 2 * * * echo `date` &   
-分 时 天 月 周  *表示每X，如每天...
+分 时 天 月 周  #*表示每X，如每天...
 echo `date`  #表示执行命令，也可以是脚本
 &  #后台运行
 
@@ -72,3 +72,7 @@ find /etc/init.d/ -mtime -1  #查看一天以内/etc/init.d/目录下修改的文件
 rpm -V 软件包的名字  #检查文件的完整性
 rpm -Vf  命令的绝对路径  #检查命令的完整性
 rpm -Va  #检查系统所有包有没有被修改
+
+默认
+cp -i test/test4.sh test2
+/usr/bin/cp test/test4.sh test2 #避免交互的cp，直接覆盖
