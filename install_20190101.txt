@@ -1,0 +1,9 @@
+#jdk install
+https://baijiahao.baidu.com/s?id=1607291514149103574&wfr=spider&for=pc
+#²»ÐèÒªexport CLASSPATH=$JAVAHOME/lib/
+
+#zookeeper install
+https://blog.csdn.net/w20228396/article/details/78815779
+
+#kafka install
+https://www.cnblogs.com/Robert-huge/p/5649826.html
